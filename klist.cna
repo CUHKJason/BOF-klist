@@ -1,0 +1,12 @@
+beacon_command_register("klist", "Simple implementation of klist.exe using Windows API", "Example: klist");
+
+alias klist {
+    local('$barch $handle');
+    $barch  = barch($1);
+    $handle = openf(script_resource("klist. $+ $barch $+ .o"));
+    $data   = readb($handle, -1);
+    closef($handle);
+    btask($1, "Running BOF klist");
+
+    beacon_inline_execute($1, $data, "go", $null);
+}
