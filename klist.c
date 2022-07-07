@@ -20,34 +20,59 @@ DECLSPEC_IMPORT DWORD WINAPI KERNEL32$GetLastError();
 PCWCHAR kerberos_ticket_etype(LONG eType)
 {
 	PCWCHAR type;
-	switch(eType)
-	{
-    // error
-    // case KERB_ETYPE_DES_CBC_MD4:					type = L"DES-CBC-MD4      "; break;
-	// case KERB_ETYPE_DES_CBC_MD5:					type = L"DES-CBC-MD5      "; break;
-	// case KERB_ETYPE_DES_CBC_MD5_NT:					type = L"DES-CBC-MD5-NT   "; break;
-	// case KERB_ETYPE_RC4_HMAC_NT:					type = L"RC4-HMAC-NT      "; break;
-	// case KERB_ETYPE_RC4_HMAC_NT_EXP:				type = L"RC4-HMAC-NT-EXP  "; break;
+    if (eType == KERB_ETYPE_DES_CBC_MD4)
+    {
+        type = L"DES-CBC-MD4";
+    }
+    else if (eType == KERB_ETYPE_DES_CBC_MD5)
+    {
+        type = L"DES-CBC-MD5";
+    }
+    else if (eType == KERB_ETYPE_DES_CBC_MD5_NT)
+    {
+        type = L"DES-CBC-MD5-NT";
 
-	case KERB_ETYPE_NULL:							type = L"NULL             "; break;
-	case KERB_ETYPE_DES_PLAIN:						type = L"DES-PLAIN        "; break;
-	case KERB_ETYPE_DES_CBC_CRC:					type = L"DES-CBC-CRC      "; break;
-	case KERB_ETYPE_RC4_PLAIN:						type = L"RC4-PLAIN        "; break;
-	case KERB_ETYPE_RC4_PLAIN2:						type = L"RC4-PLAIN2       "; break;
-	case KERB_ETYPE_RC4_PLAIN_EXP:					type = L"RC4-PLAIN-EXP    "; break;
-	case KERB_ETYPE_RC4_LM:							type = L"RC4-LM           "; break;
-	case KERB_ETYPE_RC4_MD4:						type = L"RC4-MD4          "; break;
-	case KERB_ETYPE_RC4_SHA:						type = L"RC4-SHA          "; break;
-	case KERB_ETYPE_RC4_PLAIN_OLD:					type = L"RC4-PLAIN-OLD    "; break;
-	case KERB_ETYPE_RC4_PLAIN_OLD_EXP:				type = L"RC4-PLAIN-OLD-EXP"; break;
-	case KERB_ETYPE_RC4_HMAC_OLD:					type = L"RC4-HMAC-OLD     "; break;
-	case KERB_ETYPE_RC4_HMAC_OLD_EXP:				type = L"RC4-HMAC-OLD-EXP "; break;
-	case KERB_ETYPE_AES128_CTS_HMAC_SHA1_96_PLAIN:	type = L"AES128-CTS-HMAC-SHA1-96-Plain"; break;
-	case KERB_ETYPE_AES256_CTS_HMAC_SHA1_96_PLAIN:	type = L"AES256-CTS-HMAC-SHA1-96-Plain"; break;
-    case KERB_ETYPE_AES128_CTS_HMAC_SHA1_96:		type = L"AES128-CTS-HMAC-SHA1-96      "; break;
-	case KERB_ETYPE_AES256_CTS_HMAC_SHA1_96:		type = L"AES256-CTS-HMAC-SHA1-96      "; break;
-	default:										type = L"Unknown           "; break;
-	}
+    }
+    else if (eType == KERB_ETYPE_RC4_HMAC_NT)
+    {
+        type = L"RC4-HMAC-NT";
+    }
+    else if (eType == KERB_ETYPE_RC4_HMAC_NT_EXP)
+    {
+        type = L"RC4-HMAC-NT-EXP";   
+    }
+    else
+    {
+        switch(eType)
+        {
+        // error
+        // case KERB_ETYPE_DES_CBC_MD4:					type = L"DES-CBC-MD4      "; break;
+        // case KERB_ETYPE_DES_CBC_MD5:					type = L"DES-CBC-MD5      "; break;
+        // case KERB_ETYPE_DES_CBC_MD5_NT:					type = L"DES-CBC-MD5-NT   "; break;
+        // case KERB_ETYPE_RC4_HMAC_NT:					type = L"RC4-HMAC-NT      "; break;
+        // case KERB_ETYPE_RC4_HMAC_NT_EXP:				type = L"RC4-HMAC-NT-EXP  "; break;
+        
+        case KERB_ETYPE_NULL:							type = L"NULL             "; break;
+        case KERB_ETYPE_DES_PLAIN:						type = L"DES-PLAIN        "; break;
+        case KERB_ETYPE_DES_CBC_CRC:					type = L"DES-CBC-CRC      "; break;
+        case KERB_ETYPE_RC4_PLAIN:						type = L"RC4-PLAIN        "; break;
+        case KERB_ETYPE_RC4_PLAIN2:						type = L"RC4-PLAIN2       "; break;
+        case KERB_ETYPE_RC4_PLAIN_EXP:					type = L"RC4-PLAIN-EXP    "; break;
+        case KERB_ETYPE_RC4_LM:							type = L"RC4-LM           "; break;
+        case KERB_ETYPE_RC4_MD4:						type = L"RC4-MD4          "; break;
+        case KERB_ETYPE_RC4_SHA:						type = L"RC4-SHA          "; break;
+        case KERB_ETYPE_RC4_PLAIN_OLD:					type = L"RC4-PLAIN-OLD    "; break;
+        case KERB_ETYPE_RC4_PLAIN_OLD_EXP:				type = L"RC4-PLAIN-OLD-EXP"; break;
+        case KERB_ETYPE_RC4_HMAC_OLD:					type = L"RC4-HMAC-OLD     "; break;
+        case KERB_ETYPE_RC4_HMAC_OLD_EXP:				type = L"RC4-HMAC-OLD-EXP "; break;
+        case KERB_ETYPE_AES128_CTS_HMAC_SHA1_96_PLAIN:	type = L"AES128-CTS-HMAC-SHA1-96-Plain"; break;
+        case KERB_ETYPE_AES256_CTS_HMAC_SHA1_96_PLAIN:	type = L"AES256-CTS-HMAC-SHA1-96-Plain"; break;
+        case KERB_ETYPE_AES128_CTS_HMAC_SHA1_96:		type = L"AES128-CTS-HMAC-SHA1-96      "; break;
+        case KERB_ETYPE_AES256_CTS_HMAC_SHA1_96:		type = L"AES256-CTS-HMAC-SHA1-96      "; break;
+        default:										type = L"Unknown           "; break;
+        }
+    }
+
 	return type;
 }
 
